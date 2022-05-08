@@ -22,7 +22,7 @@ namespace Discount.API.Controllers
 
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<Coupon>), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<IEnumerable<Coupon>>> GetProducts()
+        public async Task<ActionResult<IEnumerable<Coupon>>> GetDiscounts()
         {
             var coupons = await _repository.GetCoupons();
             return Ok(coupons);
