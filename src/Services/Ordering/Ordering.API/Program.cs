@@ -2,8 +2,6 @@ using Microsoft.OpenApi.Models;
 using Ordering.API.Extensions;
 using Ordering.Application;
 using Ordering.Infrastructure;
-using Ordering.Infrastructure.Persistence;
-using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,10 +31,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.MigrateDatabase<OrderContext>((context, services) =>
-{
-    var logger = services.GetService<ILogger<OrderContextSeed>>();
-    OrderContextSeed.SeedAsync(context, logger).Wait();
-});
+app.MigrateDatabase<Program>();
 
 app.Run();

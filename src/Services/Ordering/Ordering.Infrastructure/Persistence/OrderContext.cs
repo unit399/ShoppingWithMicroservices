@@ -2,6 +2,7 @@
 using Ordering.Domain.Common;
 using Ordering.Domain.Entities;
 using System;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -34,5 +35,21 @@ namespace Ordering.Infrastructure.Persistence
 
             return base.SaveChangesAsync(cancellationToken);
         }
+
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    base.OnModelCreating(modelBuilder);
+        //    modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+        //    foreach (var entityType in modelBuilder.Model.GetEntityTypes())
+        //    {
+        //        var properties = entityType.ClrType.GetProperties().Where(p => p.PropertyType == typeof(decimal));
+
+        //        foreach (var property in properties)
+        //        {
+        //            modelBuilder.Entity(entityType.Name).Property(property.Name).HasConversion<double>();
+        //        }
+        //    }
+        //}
     }
 }
