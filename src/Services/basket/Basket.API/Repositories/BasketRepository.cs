@@ -1,8 +1,6 @@
 ﻿using Basket.API.Entities;
 using Microsoft.Extensions.Caching.Distributed;
 using Newtonsoft.Json;
-using System;
-using System.Threading.Tasks;
 
 namespace Basket.API.Repositories
 {
