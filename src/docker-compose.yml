@@ -13,6 +13,9 @@ services:
   orderdb:
     image: postgres
 
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+
   pgadmin:
     image: dpage/pgadmin4
 

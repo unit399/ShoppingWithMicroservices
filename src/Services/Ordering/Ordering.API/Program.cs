@@ -1,4 +1,7 @@
+using EventBus.Messages.Common;
+using MassTransit;
 using Microsoft.OpenApi.Models;
+using Ordering.API.EventBusConsumer;
 using Ordering.API.Extensions;
 using Ordering.Application;
 using Ordering.Infrastructure;
@@ -19,6 +22,19 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Ordering.API", Version = "v1" });
 });
 
+builder.Services.AddMassTransit(config =>
+{
+    config.AddConsumer<BasketCheckoutConsumer>();
+    config.UsingRabbitMq((context, configurator) =>
+    {
+        configurator.Host(builder.Configuration["EventBusSettings:HostAddress"]);
+    });
+
+    config.ReceiveEndpoint(EventBusConstants.BasketCheckoutQueue, c =>
+    {
+        c.ConfigureConsumer<BasketCheckoutConsumer();
+    });
+});
 
 var app = builder.Build();
 

@@ -40,6 +40,14 @@ services:
     ports:
         - "1433:1433"
 
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: rabbitmq
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
   pgadmin:
     image: dpage/pgadmin4
     container_name: pgadmin
